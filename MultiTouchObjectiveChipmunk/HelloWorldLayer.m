@@ -54,10 +54,10 @@
 		}
         
         { // Add a blob
-            JellyBlob* circle = [[JellyBlob alloc] initWithPos:cpv(52,160) radius:50 count:15 circle:YES];
+            JellyBlob* circle = [[JellyBlob alloc] initWithPos:cpv(52,160) radius:50 count:16 circle:YES];
             [_space add:circle];
             
-            JellyBlob* square = [[JellyBlob alloc] initWithPos:cpv(300,160) radius:50 count:15 circle:NO];
+            JellyBlob* square = [[JellyBlob alloc] initWithPos:cpv(300,160) radius:50 count:16 circle:NO];
             [_space add:square];
         }
 		
@@ -95,7 +95,10 @@
 
 -(void)update:(cpFloat)dt
 {
-	[_space step:1.0/60.0];
+    for ( int i = 0; i < 4; ++i ) {
+        [_space step:dt/4.0];    
+    }
+	
 }
 
 static cpVect

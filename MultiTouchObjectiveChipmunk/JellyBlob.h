@@ -4,6 +4,7 @@
 #define GRABABLE_LAYER 2
 
 #import "ObjectiveChipmunk.h"
+#import "cocos2d.h"
 
 @interface JellyBlob : NSObject <ChipmunkObject> {
 	int _count;
@@ -16,6 +17,8 @@
 	cpFloat _rate, _torque;
 	cpFloat _control;
 	
+    CCTexture2D* _skin;
+    
 	NSSet *_chipmunkObjects;
 }
 
