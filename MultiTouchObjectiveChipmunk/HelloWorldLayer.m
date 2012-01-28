@@ -2,6 +2,7 @@
 
 #import "ChipmunkDebugNode.h"
 #import "JellyBlob.h"
+#import "JellyBlobVisual.h"
 
 @implementation HelloWorldLayer
 
@@ -56,6 +57,9 @@
         { // Add a blob
             JellyBlob* circle = [[JellyBlob alloc] initWithPos:cpv(52,160) radius:50 count:16 circle:YES];
             [_space add:circle];
+            
+            JellyBlobVisual* visual = [[[JellyBlobVisual alloc] initWithJelly:circle] autorelease];
+            [self addChild:visual];
             
             JellyBlob* square = [[JellyBlob alloc] initWithPos:cpv(300,160) radius:50 count:16 circle:NO];
             [_space add:square];

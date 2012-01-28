@@ -16,14 +16,14 @@
 	ChipmunkSimpleMotor *_motor;
 	cpFloat _rate, _torque;
 	cpFloat _control;
-	
-    CCTexture2D* _skin;
     
 	NSSet *_chipmunkObjects;
 }
 
 @property(nonatomic, assign) cpFloat control;
 @property(nonatomic, readonly) NSSet *chipmunkObjects;
+@property(nonatomic, readonly) NSArray *edgeBodies;
+@property(nonatomic, readonly) ChipmunkBody* centralBody;
 
 -(id)initWithPos:(cpVect)pos radius:(cpFloat)radius count:(int)count circle:(BOOL)circle;
 

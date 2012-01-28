@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A33B70014D36ECB00B07721 /* JellyBlobVisual.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A33B6FF14D36ECB00B07721 /* JellyBlobVisual.m */; };
+		6A33B70314D3731200B07721 /* Gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A33B70214D3731200B07721 /* Gradient.png */; };
 		6A38E5F014D336D200C43F19 /* JellyBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A38E5EF14D336D200C43F19 /* JellyBlob.m */; };
 		D36E8EC713DDB3ED009086B8 /* libObjectiveChipmunk-iPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F562AC13DCDFD400D3CA33 /* libObjectiveChipmunk-iPhone.a */; };
 		D3F5611A13DCDF6900D3CA33 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F5611913DCDF6900D3CA33 /* QuartzCore.framework */; };
@@ -128,6 +130,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A33B6FE14D36ECB00B07721 /* JellyBlobVisual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JellyBlobVisual.h; sourceTree = "<group>"; };
+		6A33B6FF14D36ECB00B07721 /* JellyBlobVisual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JellyBlobVisual.m; sourceTree = "<group>"; };
+		6A33B70214D3731200B07721 /* Gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Gradient.png; path = Resources/Gradient.png; sourceTree = "<group>"; };
 		6A38E5EE14D336D200C43F19 /* JellyBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JellyBlob.h; sourceTree = "<group>"; };
 		6A38E5EF14D336D200C43F19 /* JellyBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JellyBlob.m; sourceTree = "<group>"; };
 		D3F5611513DCDF6900D3CA33 /* MultiTouchObjectiveChipmunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiTouchObjectiveChipmunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -459,6 +464,8 @@
 			children = (
 				6A38E5EE14D336D200C43F19 /* JellyBlob.h */,
 				6A38E5EF14D336D200C43F19 /* JellyBlob.m */,
+				6A33B6FE14D36ECB00B07721 /* JellyBlobVisual.h */,
+				6A33B6FF14D36ECB00B07721 /* JellyBlobVisual.m */,
 				D3F5627B13DCDF6A00D3CA33 /* AppDelegate.h */,
 				D3F5627C13DCDF6A00D3CA33 /* AppDelegate.m */,
 				D3F5627E13DCDF6A00D3CA33 /* RootViewController.h */,
@@ -478,6 +485,7 @@
 		D3F5612A13DCDF6900D3CA33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6A33B70214D3731200B07721 /* Gradient.png */,
 				D3F5612B13DCDF6900D3CA33 /* Default.png */,
 				D3F5612D13DCDF6900D3CA33 /* fps_images.png */,
 				D3F5612F13DCDF6900D3CA33 /* Icon-72.png */,
@@ -916,6 +924,7 @@
 				D3F5613813DCDF6900D3CA33 /* Icon.png in Resources */,
 				D3F5613A13DCDF6900D3CA33 /* Icon@2x.png in Resources */,
 				D3F5613D13DCDF6900D3CA33 /* iTunesArtwork in Resources */,
+				6A33B70314D3731200B07721 /* Gradient.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1026,6 +1035,7 @@
 				D3F5628313DCDF6A00D3CA33 /* HelloWorldLayer.m in Sources */,
 				D3F562B113DCE0B900D3CA33 /* ChipmunkDebugNode.m in Sources */,
 				6A38E5F014D336D200C43F19 /* JellyBlob.m in Sources */,
+				6A33B70014D36ECB00B07721 /* JellyBlobVisual.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
