@@ -29,7 +29,7 @@
 		_multiGrab = [[ChipmunkMultiGrab alloc] initForSpace:_space withSmoothing:cpfpow(0.8, 60.0) withGrabForce:20000];
 		
 		ChipmunkDebugNode *debugNode = [ChipmunkDebugNode debugNodeForSpace:_space];
-		// [self addChild:debugNode];
+		[self addChild:debugNode];
 		
         if ( false )
 		{ // Add a box
@@ -56,18 +56,42 @@
 			shape.friction = 0.7;
 		}
         
+        if ( true )
         { // Add a blob
             JellyBlob* circle = [[JellyBlob alloc] initWithPos:cpv(52,160) radius:50 count:16 circle:YES];
             [_space add:circle];
             
             JellyBlobVisual* visual = [[[JellyBlobVisual alloc] initWithJelly:circle] autorelease];
             [self addChild:visual];
-            
+        }
+        
+        if ( false ) 
+        {
             JellyBlob* square = [[JellyBlob alloc] initWithPos:cpv(300,160) radius:50 count:16 circle:NO];
             [_space add:square];
             
             JellyBlobVisual* sq = [[[JellyBlobVisual alloc] initWithJelly:square] autorelease];
             [self addChild:sq];
+        }
+        
+        if ( true )
+        { // add a star
+            int count = 16;
+            cpVect* vertices = malloc(sizeof(cpVect) * count);
+            cpFloat length = 50;
+            for ( int i = 0; i < count; ++i ) {
+                cpFloat angle = 2.0 * M_PI * (count-i) / count;
+
+                vertices[i] = cpv(length * cosf(angle), length * sinf(angle));
+                NSLog(@"vert => %f, %f", vertices[i].x, vertices[i].y);
+            }
+            vertices[0].x += 15.0;
+            
+            JellyBlob* star = [[JellyBlob alloc] initWithPos:cpv(240,160) count:count vertices:vertices mass:1.5];
+            [_space add:star];
+            
+            JellyBlobVisual* st = [[[JellyBlobVisual alloc] initWithJelly:star] autorelease];
+            [self addChild:st];
         }
 		
         self.isAccelerometerEnabled = YES;

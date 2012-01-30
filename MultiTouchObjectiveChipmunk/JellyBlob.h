@@ -27,5 +27,7 @@
 @property(nonatomic, readonly) cpFloat edgeRadius;
 
 -(id)initWithPos:(cpVect)pos radius:(cpFloat)radius count:(int)count circle:(BOOL)circle;
+-(id)initWithPos:(cpVect)pos count:(int)count vertices:(cpVect*)vertices mass:(cpFloat)mass;
+
 
 @end

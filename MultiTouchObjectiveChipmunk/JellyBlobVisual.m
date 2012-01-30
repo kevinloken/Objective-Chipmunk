@@ -61,7 +61,7 @@
     
 	// remap skin
 	// done to be able to control skin rotation independently from blob rotation
-    ChipmunkBody* eb = [_jelly.edgeBodies objectAtIndex:0];
+    // ChipmunkBody* eb = [_jelly.edgeBodies objectAtIndex:0];
 	baseAngle = 0; // [ UTIL angle:_centralBody.pos b:eb.pos ];
     
 	texturePos[ 0 ] = CGPointZero;
