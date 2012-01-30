@@ -37,7 +37,7 @@
 }
 
 #define BLOB_SEGMENTS 16
-#define BLOB_SKIN_SCALE 1.0f
+#define BLOB_SKIN_SCALE 1.2f
 
 -( void )draw {
 	CGPoint segmentPos[ BLOB_SEGMENTS + 2 ];
@@ -80,7 +80,7 @@
 		texturePos[ count ] = ccpAdd( ccpMult( texturePos[ count ], 0.5f ), textureCenter );
     
     
-	glColor4ub( 255, 255, 255, 255 );
+	glColor4ub( 128, 255, 128, 255 );
     
 	glEnable( GL_TEXTURE_2D );
 	glBindTexture( GL_TEXTURE_2D, [ _skin name ] ); 

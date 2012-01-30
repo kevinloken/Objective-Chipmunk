@@ -24,6 +24,7 @@
 @property(nonatomic, readonly) NSSet *chipmunkObjects;
 @property(nonatomic, readonly) NSArray *edgeBodies;
 @property(nonatomic, readonly) ChipmunkBody* centralBody;
+@property(nonatomic, readonly) cpFloat edgeRadius;
 
 -(id)initWithPos:(cpVect)pos radius:(cpFloat)radius count:(int)count circle:(BOOL)circle;
 

@@ -29,8 +29,9 @@
 		_multiGrab = [[ChipmunkMultiGrab alloc] initForSpace:_space withSmoothing:cpfpow(0.8, 60.0) withGrabForce:20000];
 		
 		ChipmunkDebugNode *debugNode = [ChipmunkDebugNode debugNodeForSpace:_space];
-		[self addChild:debugNode];
+		// [self addChild:debugNode];
 		
+        if ( false )
 		{ // Add a box
 			cpFloat mass = 5;
 			cpFloat width = 200;
@@ -43,6 +44,7 @@
 			shape.friction = 0.7;
 		}
 		
+        if ( false )
 		{ // Add a circle
 			cpFloat mass = 1;
 			cpFloat radius = 50;
@@ -63,6 +65,9 @@
             
             JellyBlob* square = [[JellyBlob alloc] initWithPos:cpv(300,160) radius:50 count:16 circle:NO];
             [_space add:square];
+            
+            JellyBlobVisual* sq = [[[JellyBlobVisual alloc] initWithJelly:square] autorelease];
+            [self addChild:sq];
         }
 		
         self.isAccelerometerEnabled = YES;

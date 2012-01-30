@@ -12,6 +12,7 @@
 @synthesize control = _control, chipmunkObjects = _chipmunkObjects;
 @synthesize centralBody = _centralBody;
 @synthesize edgeBodies = _edgeBodies;
+@synthesize edgeRadius = _edgeRadius;
 
 -(cpVect)offsetForCircle:(cpFloat)angle
 {
