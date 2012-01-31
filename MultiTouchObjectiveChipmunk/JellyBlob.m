@@ -89,30 +89,33 @@
         NSMutableSet* set = [NSMutableSet set];
         self.chipmunkObjects = set;
         
+        cpFloat radius = [self distance:vertices[0]];
+        for ( int i = 1; i < count; ++i ) {
+            cpFloat r = [self distance:vertices[i]];
+            if ( r < radius ) {
+                radius = r;
+            }
+        }
+        radius = radius * 0.7;
+        
         _count = count;
         _rate = 5.0;
         _torque = 50000.0;
         
-        _centralBody = [ChipmunkBody bodyWithMass:mass andMoment:cpMomentForPoly(mass, _count, vertices, cpvzero)];
+        _centralBody = [ChipmunkBody bodyWithMass:mass andMoment:cpMomentForCircle(mass, 0, radius, cpvzero)];
         [set addObject:_centralBody];
         _centralBody.pos = pos;
         
-        ChipmunkShape* centralShape = [ChipmunkPolyShape polyWithBody:_centralBody count:_count verts:vertices offset:cpvzero];
+        ChipmunkShape* centralShape = [ChipmunkCircleShape circleWithBody:_centralBody radius:radius offset:cpvzero];            
         [set addObject:centralShape];
         centralShape.group = self;
         centralShape.layers = GRABABLE_LAYER;
         
         cpFloat edgeMass = 1.0/count;
-		
-        cpFloat radius = 0.0f;
-        for ( int i = 0; i < count; ++i ) {
-            radius += [self distance:vertices[i]];
-        }
-        radius = radius / (cpFloat)(count);
         
 		cpFloat squishCoef = 0.7;
-		cpFloat springStiffness = 3;
-		cpFloat springDamping = 1;
+		cpFloat springStiffness = 30;
+		cpFloat springDamping = 10;
 		
 		NSMutableArray *bodies = [[NSMutableArray alloc] initWithCapacity:count];
 		_edgeBodies = bodies;
@@ -123,10 +126,12 @@
 		
 		for(int i=0; i<count; i++){
             cpFloat angle = [self angle:vertices[i]];
+            cpFloat distance = [self distance:vertices[i]];
+            
             cpVect unit = cpv(cosf(angle), sinf(angle));
-            cpVect offset = cpvmult(unit, radius);
+            cpVect offset = cpvmult(unit, distance);
 
-            NSLog(@"poly, vertex %d => (%f,%f) yields angle %f, unit vector (%f,%f) => offset = (%f,%f)", i, vertices[i].x,vertices[i].y, 360.0 * angle / (M_PI * 2.0), unit.x, unit.y, offset.x, offset.y);
+            //NSLog(@"poly, vertex %d => (%f,%f) yields angle %f, unit vector (%f,%f) => offset = (%f,%f)", i, vertices[i].x,vertices[i].y, 360.0 * angle / (M_PI * 2.0), unit.x, unit.y, offset.x, offset.y);
             
 			ChipmunkBody *body = [ChipmunkBody bodyWithMass:edgeMass andMoment:INFINITY];
 			body.pos = cpvadd(pos, offset);
@@ -139,11 +144,11 @@
 			shape.group = self;
 			shape.layers = NORMAL_LAYER;
 			
-            ChipmunkSlideJoint* slide = [ChipmunkSlideJoint slideJointWithBodyA:_centralBody bodyB:body anchr1:offset anchr2:cpvzero min:0 max:radius*squishCoef];
+            ChipmunkSlideJoint* slide = [ChipmunkSlideJoint slideJointWithBodyA:_centralBody bodyB:body anchr1:offset anchr2:cpvzero min:0 max:0.01*distance*squishCoef];
 			[set addObject:slide];
 			
             cpVect springOffset;
-            springOffset = cpvmult(unit, radius + _edgeRadius);
+            springOffset = cpvmult(unit, distance + _edgeRadius);
             
 			[set addObject:[ChipmunkDampedSpring dampedSpringWithBodyA:_centralBody bodyB:body anchr1:springOffset anchr2:cpvzero restLength:0 stiffness:springStiffness damping:springDamping]];
 		}
@@ -202,9 +207,9 @@
 		cpFloat edgeDistance = 2.0*radius*cpfsin(M_PI/(cpFloat)count);
 		_edgeRadius = edgeDistance/2.0;
 		
-		cpFloat squishCoef = 0.7;
-		cpFloat springStiffness = 3;
-		cpFloat springDamping = 1;
+		cpFloat squishCoef = 0.95; // 0.7;
+		cpFloat springStiffness = 30; // 3;
+		cpFloat springDamping = 10; // 1;
 		
 		NSMutableArray *bodies = [[NSMutableArray alloc] initWithCapacity:count];
 		_edgeBodies = bodies;

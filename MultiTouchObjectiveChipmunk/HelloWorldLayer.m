@@ -44,25 +44,32 @@
 			shape.friction = 0.7;
 		}
 		
-        if ( false )
+        if ( true )
 		{ // Add a circle
 			cpFloat mass = 1;
-			cpFloat radius = 50;
+			cpFloat radius = 10;
 			
-			ChipmunkBody *body = [_space add:[ChipmunkBody bodyWithMass:mass andMoment:cpMomentForCircle(mass, 0, radius, cpvzero)]];
-			body.pos = cpv(400, 160);
-			
-			ChipmunkShape *shape = [_space add:[ChipmunkCircleShape circleWithBody:body radius:radius offset:cpvzero]];
-			shape.friction = 0.7;
+            for ( int x = 20; x < 200; x += 20 ) {
+                for ( int y = 20; y < 200; y += 20 ) {
+                    ChipmunkBody *body = [_space add:[ChipmunkBody bodyWithMass:mass andMoment:cpMomentForCircle(mass, 0, radius, cpvzero)]];
+                    body.pos = cpv(x, y);
+                    
+                    ChipmunkShape *shape = [_space add:[ChipmunkCircleShape circleWithBody:body radius:radius offset:cpvzero]];
+                    shape.friction = 0.1;                    
+                }
+            }
+
 		}
         
-        if ( true )
+        if ( false )
         { // Add a blob
+
             JellyBlob* circle = [[JellyBlob alloc] initWithPos:cpv(52,160) radius:50 count:16 circle:YES];
             [_space add:circle];
             
             JellyBlobVisual* visual = [[[JellyBlobVisual alloc] initWithJelly:circle] autorelease];
-            [self addChild:visual];
+            [self addChild:visual];                
+
         }
         
         if ( false ) 
@@ -74,7 +81,7 @@
             [self addChild:sq];
         }
         
-        if ( true )
+        if ( false )
         { // add a star
             int count = 16;
             cpVect* vertices = malloc(sizeof(cpVect) * count);
@@ -82,13 +89,21 @@
             for ( int i = 0; i < count; ++i ) {
                 cpFloat angle = 2.0 * M_PI * (count-i) / count;
 
-                vertices[i] = cpv(length * cosf(angle), length * sinf(angle));
+                cpFloat l = length;
+                if ( i % 2 == 1 ) {
+                    l += 25.0;
+                }  else {
+                    l -= 15.0;
+                }
+                vertices[i] = cpv(l * cosf(angle), l * sinf(angle));
+                
+
                 NSLog(@"vert => %f, %f", vertices[i].x, vertices[i].y);
             }
-            vertices[0].x += 15.0;
             
             JellyBlob* star = [[JellyBlob alloc] initWithPos:cpv(240,160) count:count vertices:vertices mass:1.5];
             [_space add:star];
+            [star setControl:1.0f];
             
             JellyBlobVisual* st = [[[JellyBlobVisual alloc] initWithJelly:star] autorelease];
             [self addChild:st];
